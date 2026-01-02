@@ -1,4 +1,5 @@
 __pycache__/
 *.pyc
-artifacts/
 .gemini/
+artifacts/cosine_sim.npy
+artifacts/tfidf.pkl

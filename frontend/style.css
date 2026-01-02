@@ -1,0 +1,428 @@
+/* Global Vars & Reset */
+:root {
+    /* "Best" Dark Blue Combo: Deep Navy + Electric Blue + White Text */
+    --primary: #3b82f6;
+    /* Bright Blue */
+    --primary-glow: rgba(59, 130, 246, 0.5);
+    --bg-dark: #0b1121;
+    /* Very Deep Navy */
+    --bg-card: #151e32;
+    /* Lighter Navy for Cards */
+    --bg-hover: #1e293b;
+    --text-main: #f0f9ff;
+    /* Very light blue/white */
+    --text-muted: #94a3b8;
+    /* Blue-grey */
+    --border: #1e293b;
+    --glass: rgba(11, 17, 33, 0.9);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Subtle blue gradient mesh */
+    background-image:
+        radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15), transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(147, 51, 234, 0.1), transparent 40%);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* App Container */
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: white;
+    /* Make logo white for contrast */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo i {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-links a.active {
+    color: white;
+    background: var(--primary);
+    box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 80px 0 50px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.hero.small-hero {
+    padding: 40px 0 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    /* 48px */
+    font-weight: 800;
+    margin-bottom: 20px;
+    /* Gradient Text */
+    background: linear-gradient(135deg, #fff 0%, #93c5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+.hero p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Search Box */
+.search-container {
+    max-width: 650px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 50;
+    width: 100%;
+    /* Important for mobile */
+}
+
+.search-box {
+    display: flex;
+    background: rgba(21, 30, 50, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 6px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+
+.search-icon {
+    padding: 16px;
+    color: var(--primary);
+}
+
+.search-box input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    margin-right: 10px;
+    min-width: 0;
+    /* Prevents overflow */
+}
+
+.search-box button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    /* Keep text on one line */
+}
+
+/* Suggestions Dropdown */
+.suggestions-dropdown {
+    position: absolute;
+    top: 115%;
+    left: 10px;
+    right: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.suggestion-item {
+    padding: 14px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text-muted);
+}
+
+.suggestion-item:hover {
+    background: var(--bg-hover);
+    color: var(--primary);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 40px 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.section-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+}
+
+/* Book Grid */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* Book Card */
+.book-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: var(--primary);
+}
+
+.book-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 3.2rem;
+    color: white;
+}
+
+.book-author {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.book-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 15px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #fbbf24;
+    font-weight: 600;
+}
+
+.rating span {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.btn-icon {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--primary);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-icon:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Loader */
+.loading-spinner {
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    display: none;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+
+    /* Adjust Container padding */
+    .app-container {
+        padding: 0 15px;
+    }
+
+    /* Stack Header */
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 0;
+    }
+
+    .logo {
+        width: 100%;
+        justify-content: center;
+        /* Center logo text */
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-links a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    /* Typography Checks */
+    .hero h1 {
+        font-size: 2rem;
+        /* Smaller hero title */
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    /* Grid becomes single column */
+    .book-grid {
+        grid-template-columns: 1fr;
+        /* Full width cards */
+        gap: 20px;
+    }
+
+    /* Search Box Tweaks */
+    .search-box {
+        padding: 4px;
+    }
+
+    .search-box button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .search-icon {
+        padding: 12px;
+    }
+
+    .book-card {
+        padding: 20px;
+        /* Slightly less padding to save space */
+    }
+}
