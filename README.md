@@ -1,19 +1,23 @@
 # 📚 Book Recommendation System
 
-A sophisticated content-based recommendation system capable of suggesting books based on user interests. This application features a **Premium Dark UI**, **Mobile Responsiveness**, and **Interactive Recommendations**.
+A sophisticated content-based recommendation system capable of suggesting books based on user interests. This application features a **Premium Dark Blue UI**, **Mobile Responsiveness**, and a **Multi-View Single Page Architecture**.
 
 ## 🚀 Features
 
-- **Premium UI/UX**: A modern, "Slate & Indigo" dark theme with glassmorphism effects and Inter typography.
-- **Interactive Discovery**: Click on any book card to instantly find similar reads.
-- **Mobile Responsive**: Fully adaptive grid layout that looks great on Desktops, Tablets, and Mobile phones.
-- **Hybrid Recommendation Engine**: (Mention if it uses hybrid, otherwise specify Content-Based using Cosine Similarity).
+- **Premium UI/UX**: A modern "Deep Navy & White" theme with glassmorphism effects and animations.
+- **Multi-View Architecture**:
+    - **Home View**:Showcases top Trending Books.
+    - **Recommendations View**: Dedicated search interface for personalized suggestions.
+- **Interactive Discovery**: Click on any book card to instantly pivot and find similar reads.
+- **Mobile Responsive**: Fully adaptive layout (Stacked Navigation, Single-Column Grid) optimized for mobile devices.
+- **Fast Performance**: Backend powered by **FastAPI** for low-latency responses.
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: [Streamlit](https://streamlit.io/)
-- **Backend/Logic**: Python (Pandas, NumPy, Scikit-learn)
-- **Deployment**: Render / Streamlit Cloud
+- **Frontend**: HTML5, Vanilla CSS3 (Custom Variables & Animations), Vanilla JavaScript
+- **Backend**: FastAPI (Python)
+- **Data Processing**: Pandas, NumPy, Scikit-learn (Cosine Similarity)
+- **Deployment**: Render
 
 ## 💻 Running Locally
 
@@ -28,12 +32,12 @@ A sophisticated content-based recommendation system capable of suggesting books 
     pip install -r requirements.txt
     ```
 
-3.  **Run the app:**
+3.  **Run the application:**
     ```bash
-    streamlit run app.py
+    uvicorn backend.main:app --reload
     ```
 
-4.  Open your browser at `http://localhost:8501`.
+4.  Open your browser at `http://127.0.0.1:8000`.
 
 ## 🌐 Deployment
 
@@ -43,9 +47,8 @@ This repository includes a `render.yaml` for automatic deployment.
 
 1.  Create a new **Web Service** on [Render](https://render.com).
 2.  Connect this repository.
-3.  Render will automatically use the configuration to build and start the app.
-
-> **Note**: The `artifacts/cosine_sim.npy` file is efficiently managed using **Git LFS** due to its size (>100MB).
+3.  Set the **Build Command** to: `pip install -r requirements.txt`
+4.  Set the **Start Command** to: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
 
 ## 📝 Author
 
